@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="screenColor">#1bb200</color>
+    <color name="listColor">#edab03</color>
+    <color name="menuColor">#0074e7</color>
+</resources>

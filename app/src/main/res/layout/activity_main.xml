@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/main_layout"
+    android:background="@color/screenColor">
+
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="15dp"
+        android:id="@+id/contentLayout"
+        android:orientation="vertical"
+        android:background="@color/listColor">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Меню"
+            android:id="@+id/buttonMenu" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/sergei/Documents/git/TestTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/sergei/Documents/git/TestTask/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-8dce2664d6b116f30492af923becb9d6a3944066.jar" />
+    </item>
+    <item
+        jar="/Users/sergei/Documents/git/TestTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/sergei/Documents/git/TestTask/app/build/intermediates/pre-dexed/debug/classes-b6f555e85ebf7ace5dd965149e679b6970d6b847.jar" />
+    </item>
+    <item
+        jar="/Users/sergei/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="/Users/sergei/AndroidstudioProjects/TestTask/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-709fd648b5740b03113ff41c45335c13a70530ee.jar" />
+    </item>
+    <item
+        jar="/Users/sergei/AndroidstudioProjects/TestTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="/Users/sergei/AndroidstudioProjects/TestTask/app/build/intermediates/pre-dexed/debug/classes-e4a65b3ef183ab97f3ac5b5a00d448afaeed8b39.jar" />
+    </item>
+    <item
+        jar="/Users/sergei/AndroidstudioProjects/TestTask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/sergei/AndroidstudioProjects/TestTask/app/build/intermediates/pre-dexed/debug/classes-01c5842c84df7931dd5773f64a9d3d1c362efc7b.jar" />
+    </item>
+    <item
+        jar="/Users/sergei/AndroidstudioProjects/TestTask/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="/Users/sergei/AndroidstudioProjects/TestTask/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-3fb124126e5a68729674a695fd76ab241e4f58ad.jar" />
+    </item>
+    <item
+        jar="/Users/sergei/Documents/git/TestTask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="/Users/sergei/Documents/git/TestTask/app/build/intermediates/pre-dexed/debug/classes-4f34fe3be459af431ed9c2bc88c9903d356fd961.jar" />
+    </item>
+
+</items>
