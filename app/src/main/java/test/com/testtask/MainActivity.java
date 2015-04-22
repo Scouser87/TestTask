@@ -34,8 +34,12 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewParent;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -84,6 +88,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
     static LinearLayout s_layoutScroll = null;
     static ScrollViewExt s_scrollViewExt = null;
     static ProgressBar s_spinner = null;
+
+    static LinearLayout s_menuLayout = null;
+    static int s_menuWidth = 0;
 
     static int s_readedRecords = 0;
 
@@ -413,14 +420,43 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 
         mainInstance = this;
 
-        LinearLayout menuLayout = (LinearLayout)findViewById(R.id.menuLayout);
-        if (menuLayout != null)
+        s_menuLayout = null;
+        s_menuLayout = (LinearLayout)findViewById(R.id.menuLayout);
+        if (s_menuLayout != null)
         {
             RelativeLayout menu = (RelativeLayout)LayoutInflater.from(this).inflate(R.layout.menu, null);
             if (menu != null)
             {
-                menuLayout.addView(menu);
+                s_menuLayout.addView(menu);
             }
+
+            s_isMenuMoving = false;
+            s_menuSide = -1;
+
+            LayoutParams layParamsGet= s_menuLayout.getLayoutParams();
+            s_menuWidth=layParamsGet.width;
+            s_menuLayout.setTranslationX(-s_menuWidth);
+
+            TranslateAnimation anim = new TranslateAnimation(0, -s_menuWidth, 0, 0);
+            anim.setDuration(0);
+            anim.setFillAfter(true);
+
+            anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+
+                @Override
+                public void onAnimationStart(Animation animation) { }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) { }
+
+                @Override
+                public void onAnimationEnd(Animation animation)
+                {
+                    s_menuLayout.setTranslationX(0);
+                }
+            });
+
+            s_menuLayout.startAnimation(anim);
         }
 
         Button buttonMenu = (Button)findViewById(R.id.buttonMenu);
@@ -472,10 +508,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
         TextView textViewReaded = (TextView)findViewById(R.id.textViewReaded);
         if (textViewReaded != null)
             textViewReaded.setText(String.format("Прочитано записей: %d", s_readedRecords));
-
-        Button buttonClose = (Button)findViewById(R.id.buttonClose);
-        if (buttonClose != null)
-            buttonClose.setOnClickListener(this);
 
         if (s_layoutScroll != null)
         {
@@ -566,10 +598,103 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
         return super.onKeyDown(keyCode, event);
     }
 
+
+    private float x1,x2;
+    static final int MIN_DISTANCE = 50;
+    static boolean s_isMenuMoving = false;
+    static int s_menuSide = -1;
+
+    public void findButtonClose()
+    {
+        Button buttonClose = (Button)findViewById(R.id.buttonClose);
+        if (buttonClose != null)
+            buttonClose.setOnClickListener(this);
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (s_touchesEnabled)
+        {
+            if (s_menuLayout != null && s_isMenuMoving == false)
+            {
+                switch(ev.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                        x1 = ev.getX();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        x2 = ev.getX();
+                        float deltaX = x2 - x1;
+                        if (Math.abs(deltaX) > MIN_DISTANCE)
+                        {
+                            if(s_menuSide == -1 && deltaX > 0.0f)
+                            {
+                                s_menuLayout.setVisibility(View.VISIBLE);
+
+                                TranslateAnimation anim = new TranslateAnimation(-s_menuWidth, 0, 0, 0);
+                                anim.setDuration(500);
+                                anim.setFillAfter(true);
+
+                                anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+
+                                    @Override
+                                    public void onAnimationStart(Animation animation) { }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) { }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation)
+                                    {
+                                        s_menuSide = 1;
+                                        s_isMenuMoving = false;
+
+                                        findButtonClose();
+                                    }
+                                });
+
+                                s_isMenuMoving = true;
+                                s_menuLayout.startAnimation(anim);
+                            }
+                            else if(s_menuSide == 1 && deltaX < 0.0f)
+                            {
+                                TranslateAnimation anim = new TranslateAnimation(0, -s_menuWidth, 0, 0);
+                                anim.setDuration(500);
+                                anim.setFillAfter(true);
+
+                                anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+
+                                    @Override
+                                    public void onAnimationStart(Animation animation) { }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) { }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation)
+                                    {
+                                        s_menuSide = -1;
+                                        s_isMenuMoving = false;
+                                    }
+                                });
+
+                                s_isMenuMoving = true;
+                                s_menuLayout.startAnimation(anim);
+                            }
+                        }
+                        else
+                        {
+                            // consider as something else - a screen tap for example
+                        }
+                        break;
+                }
+            }
+
             return super.dispatchTouchEvent(ev);
+        }
         return true;
     }
+
+
+
 }
